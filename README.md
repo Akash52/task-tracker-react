@@ -1,9 +1,8 @@
-# Pixabay Image Gallery - React & Tailwind CSS 
+# Task Tracker App using React & TailwindCSS
 
-Simple gallery with images from the pixabay API. Tailwind css is built into workflow with postcss and autoprefixer.
+Simple task tracker app track your daily task
 
-## Usage
-Add your Pixabay API key to .env - https://pixabay.com/api/docs/
+
 
 ```
 # Install dependencies
