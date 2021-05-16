@@ -1,54 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const AddTask = () => {
+const AddTask = ({ onAdd }) => {
+  const [text, setText] = useState('')
+  const [day, setDay] = useState('')
+  const [reminder, setReminder] = useState(false)
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    if (!text) {
+      alert('Please Add Task')
+      return
+    }
+    onAdd({ text, day, reminder })
+    setText('')
+    setDay('')
+    setReminder(false)
+  }
+
   return (
     <>
       <form
         autoComplete="off"
-        className="bg-white shadow-sm rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-pink-50 shadow-sm rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={onSubmit}
       >
         <div className="mb-4">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="username"
-          >
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Task
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="task"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
             type="text"
             placeholder="Add Task"
           />
         </div>
         <div className="mb-4">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="username"
-          >
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Day & Time
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
+            value={day}
+            onChange={(e) => setDay(e.target.value)}
             placeholder="Day & Time"
           />
         </div>
-        <div class="flex items-center justify-between">
-          <span class="block text-gray-700 text-sm font-bold mb-2">
+        <div className="flex items-center justify-between">
+          <span className="block text-gray-700 text-sm font-bold mb-2">
             Reminder{' '}
           </span>
           <input
             type="checkbox"
-            class="form-checkbox h-5 w-5 text-red-600"
-            checked
+            value={reminder}
+            checked={reminder}
+            onChange={(e) => setReminder(e.currentTarget.checked)}
+            className="form-checkbox h-5 w-5 text-red-600"
           />
         </div>
-        <div class="flex items-center justify-ceneter">
+        <div className="flex items-center justify-ceneter">
           <button
-            class="bg-blue-500 hover:bg-blue-700 text-white  rounded-md font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            className="bg-blue-500 hover:bg-blue-700 text-white  rounded-md font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
           >
             Save Task
           </button>

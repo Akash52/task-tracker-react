@@ -4,6 +4,7 @@ import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
 
 const App = () => {
+  const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -25,6 +26,16 @@ const App = () => {
     },
   ])
 
+  // Add Task
+
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 1000) + 1
+    //console.log(id)
+
+    const newTask = { id, ...task }
+    setTasks([...tasks, newTask])
+  }
+
   //Delete Task
 
   const deleteTask = (id) => {
@@ -43,8 +54,11 @@ const App = () => {
     <>
       <div className="flex items-center justify-center mx-auto  w-full py-4">
         <div className="max-w-md py-2 px-8 bg-white w-full   shadow-lg rounded-lg my-2">
-          <Header />
-          <AddTask />
+          <Header
+            onAdd={() => setShowAddTask(!showAddTask)}
+            showAdd={showAddTask}
+          />
+          {showAddTask && <AddTask onAdd={addTask} />}
           {tasks.length > 0 ? (
             <Tasks tasks={tasks} onDelete={deleteTask} onToggle={onReminder} />
           ) : (
