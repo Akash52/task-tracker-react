@@ -1,6 +1,6 @@
 # Task Tracker App using React & TailwindCSS
 
-Simple task tracker app track your daily task
+Simple task tracker app you can track your daly task
 
 [Live Demo](https://quirky-brown-1226cd.netlify.app/)
 
